@@ -130,7 +130,7 @@ void Sudoku::setLocked(int val, int i, int j) {
  * @param col Col of square in desired box
  * @return Vector of the integers in the box minus current
  */
-void Sudoku::getSub(std::vector<int> neighbors, int row, int col) {
+void Sudoku::getSub(std::vector<int> &neighbors, int row, int col) {
     int subLength = (int) sqrt(BOARD_LENGTH);
 
     // Find location within sub

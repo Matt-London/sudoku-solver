@@ -87,7 +87,7 @@ class Sudoku {
          * @param col Col of square in desired box
          * @return Vector of the integers in the box minus current
          */
-        void getSub(std::vector<int> neighbors, int row, int col);
+        void getSub(std::vector<int> &neighbors, int row, int col);
 
 };
 
