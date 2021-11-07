@@ -2,8 +2,8 @@
 // Created by mattl on 11/7/2021.
 //
 
-#ifndef SUDOKU_SOLVER_HANDLER_H
-#define SUDOKU_SOLVER_HANDLER_H
+#ifndef SUDOKU_SOLVER_SUDOKUHANDLER_H
+#define SUDOKU_SOLVER_SUDOKUHANDLER_H
 
 
 #include "Sudoku.h"
@@ -13,12 +13,15 @@
 
 #include <iostream>
 #include <string>
+#include <chrono>
 
-class Handler {
+class SudokuHandler {
     private:
         Sudoku unsolved;
         Sudoku solved;
         bool hasSolution;
+        double elapsedTime;
+        int configsTried;
 
         std::string path;
 
@@ -35,7 +38,7 @@ class Handler {
          *
          * @param path path to puzzle file
          */
-        Handler(std::string path);
+        SudokuHandler(std::string path);
 
         /**
          * Prints out the unsolved puzzle with delimiters
@@ -50,4 +53,4 @@ class Handler {
 };
 
 
-#endif //SUDOKU_SOLVER_HANDLER_H
+#endif //SUDOKU_SOLVER_SUDOKUHANDLER_H

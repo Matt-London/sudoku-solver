@@ -2,20 +2,27 @@
 // Created by mattl on 11/7/2021.
 //
 
-#include "Handler.h"
+#include "SudokuHandler.h"
 
 /**
  * Constructor that takes path
  *
  * @param path path to puzzle file
  */
-Handler::Handler(std::string path) {
+SudokuHandler::SudokuHandler(std::string path) {
     Reader::read_sudoku(unsolved, path);
 
     SudokuConfig config(0, -1, unsolved);
 
     Backtracker backtracker(false);
+
+    auto start = std::chrono::high_resolution_clock::now();
     std::optional solution = backtracker.solve(config);
+    auto stop = std::chrono::high_resolution_clock::now();
+
+    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
+
+    elapsedTime = std::chrono::duration<double>(duration).count();
 
     if (solution.has_value()) {
         hasSolution = true;
@@ -25,6 +32,7 @@ Handler::Handler(std::string path) {
         hasSolution = false;
     }
 
+    configsTried = config.getConfigsTried();
 
 }
 
@@ -33,7 +41,7 @@ Handler::Handler(std::string path) {
  *
  * @param grid Sudoku grid
  */
-void Handler::prettyPrint(int grid[BOARD_LENGTH][BOARD_LENGTH]) {
+void SudokuHandler::prettyPrint(int grid[BOARD_LENGTH][BOARD_LENGTH]) {
     int subLen = sqrt(BOARD_LENGTH);
 
     for (int i = 0; i < BOARD_LENGTH; i++) {
@@ -66,14 +74,17 @@ void Handler::prettyPrint(int grid[BOARD_LENGTH][BOARD_LENGTH]) {
 /**
  * Prints out the unsolved puzzle with delimiters
  */
-void Handler::prettyPrintBase() {
+void SudokuHandler::prettyPrintBase() {
     prettyPrint(unsolved.grid);
 }
 
 /**
  * Prints out the solved puzzle with the delimiters
  */
-void Handler::prettyPrintSol() {
+void SudokuHandler::prettyPrintSol() {
+    std::cout << "Elapsed time: " << elapsedTime << " seconds" << std::endl;
+    std::cout << "Configurations tried: " << configsTried << " configurations" << std::endl;
+
     if (hasSolution) {
         prettyPrint(solved.grid);
     }
