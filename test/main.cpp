@@ -8,7 +8,7 @@
 using namespace std;
 
 int main() {
-    Handler handler("../input/input01.txt");
+    Handler handler("../input/input02.txt");
 //    handler.prettyPrintBase();
 
     handler.prettyPrintSol();
