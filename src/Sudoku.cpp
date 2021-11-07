@@ -5,21 +5,15 @@
 #include "Sudoku.h"
 
 /**
- * Constructor for debug that decides whether to fill or not
+ * Constructor for sudoku, fills blank
  *
- * @param fill
  */
-Sudoku::Sudoku(bool fill) {
-    if (fill) {
+Sudoku::Sudoku() {
+    for (int i = 0; i < BOARD_LENGTH; i++) {
+        for (int j = 0; j < BOARD_LENGTH; j++) {
+            grid[i][j] = BLANK;
+            locked[i][j] = false;
 
-    }
-    else {
-        for (int i = 0; i < BOARD_LENGTH; i++) {
-            for (int j = 0; j < BOARD_LENGTH; j++) {
-                grid[i][j] = BLANK;
-                locked[i][j] = false;
-
-            }
         }
     }
 
@@ -38,34 +32,6 @@ Sudoku::Sudoku(Sudoku const &other) {
 
             // Copy lock status
             this->locked[i][j] = other.locked[i][j];
-        }
-    }
-}
-
-/**
- * Default constructor that will be called by the program to fill
- */
-Sudoku::Sudoku() : Sudoku(true) {}
-
-/**
- * Constructor to be used when a puzzle is generated externally
- *
- * @param board Board with numbers and -1 representing blank
- */
-Sudoku::Sudoku(int board[BOARD_LENGTH][BOARD_LENGTH]) {
-    // Copy over
-    for (int i = 0; i < BOARD_LENGTH; i++) {
-        for (int j = 0; j < BOARD_LENGTH; j++) {
-            if (board[i][j] == -1) {
-                grid[i][j] = BLANK;
-                locked[i][j] = false;
-
-            }
-            else {
-                grid[i][j] = board[i][j];
-                locked[i][j] = true;
-
-            }
         }
     }
 }

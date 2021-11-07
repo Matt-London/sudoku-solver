@@ -13,16 +13,16 @@
  */
 class Sudoku {
     private:
-        int grid[BOARD_LENGTH][BOARD_LENGTH];
         bool locked[BOARD_LENGTH][BOARD_LENGTH];
 
     public:
+        int grid[BOARD_LENGTH][BOARD_LENGTH];
+
         /**
-         * Constructor for debug that decides whether to fill or not
+         * Constructor for sudoku, fills blank
          *
-         * @param fill
          */
-        Sudoku(bool fill);
+        Sudoku();
 
         /**
         * Copy constructor
@@ -30,18 +30,6 @@ class Sudoku {
         * @param other other sudoku to copy from
         */
         Sudoku(Sudoku const &other);
-
-        /**
-         * Default constructor that will be called by the program to fill
-         */
-        Sudoku();
-
-        /**
-         * Constructor to be used when a puzzle is generated externally
-         *
-         * @param board Board with numbers and -1 representing blank
-         */
-        Sudoku(int board[BOARD_LENGTH][BOARD_LENGTH]);
 
         /**
          * Accessor for a specific space
