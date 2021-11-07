@@ -7,3 +7,6 @@
 7 . . 6 2 . . 4 .
 . 9 . 5 . . 2 6 .
 . . 6 . . 7 . . .
+
+
+"Extreme" sudoku challenge from sudoku iphone app
