@@ -74,5 +74,10 @@ void Handler::prettyPrintBase() {
  * Prints out the solved puzzle with the delimiters
  */
 void Handler::prettyPrintSol() {
-    prettyPrint(solved.grid);
+    if (hasSolution) {
+        prettyPrint(solved.grid);
+    }
+    else {
+        std::cout << "No solution!" << std::endl;
+    }
 }
