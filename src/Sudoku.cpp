@@ -14,6 +14,23 @@ Sudoku::Sudoku(bool fill) {
 }
 
 /**
+ * Copy constructor
+ *
+ * @param other other sudoku to copy from
+ */
+Sudoku::Sudoku(Sudoku const &other) {
+    for (int i = 0; i < BOARD_LENGTH; i++) {
+        for (int j = 0; j < BOARD_LENGTH; j++) {
+            // Copy over grid
+            this->grid[i][j] = other.grid[i][j];
+
+            // Copy lock status
+            this->locked[i][j] = other.locked[i][j];
+        }
+    }
+}
+
+/**
  * Default constructor that will be called by the program to fill
  */
 Sudoku::Sudoku() : Sudoku(true) {}

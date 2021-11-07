@@ -12,8 +12,6 @@
  */
 class Sudoku {
     private:
-        int length;
-
         int grid[BOARD_LENGTH][BOARD_LENGTH];
         bool locked[BOARD_LENGTH][BOARD_LENGTH];
 
@@ -24,6 +22,13 @@ class Sudoku {
          * @param fill
          */
         Sudoku(bool fill);
+
+        /**
+        * Copy constructor
+        *
+        * @param other other sudoku to copy from
+        */
+        Sudoku(Sudoku const &other);
 
         /**
          * Default constructor that will be called by the program to fill
