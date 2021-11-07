@@ -15,6 +15,7 @@ class SudokuConfig {
         // Last spot to be changed
         int row;
         int col;
+        static int configsTried;
 
         Sudoku sudoku;
 
@@ -69,6 +70,13 @@ class SudokuConfig {
          * @return sudoku
          */
         Sudoku getSudoku();
+
+        /**
+         * Accessor for number of configsTried to solve
+         *
+         * @return configsTried
+         */
+        static int getConfigsTried();
 
 
 };

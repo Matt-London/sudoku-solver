@@ -3,6 +3,9 @@
 //
 
 #include "SudokuConfig.h"
+
+int SudokuConfig::configsTried = 1;
+
 /**
  * Constructor for config
  *
@@ -90,6 +93,8 @@ std::vector<SudokuConfig> SudokuConfig::getSuccessors() {
             successors.push_back(successor);
         }
     }
+
+    configsTried += BOARD_LENGTH;
 
     return successors;
 
@@ -179,4 +184,13 @@ std::string SudokuConfig::printable() {
  */
 Sudoku SudokuConfig::getSudoku() {
     return sudoku;
+}
+
+/**
+ * Accessor for number of configsTried to solve
+ *
+ * @return configsTried
+ */
+int SudokuConfig::getConfigsTried() {
+    return configsTried;
 }
