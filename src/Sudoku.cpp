@@ -10,6 +10,18 @@
  * @param fill
  */
 Sudoku::Sudoku(bool fill) {
+    if (fill) {
+
+    }
+    else {
+        for (int i = 0; i < BOARD_LENGTH; i++) {
+            for (int j = 0; j < BOARD_LENGTH; j++) {
+                grid[i][j] = BLANK;
+                locked[i][j] = false;
+
+            }
+        }
+    }
 
 }
 
@@ -100,14 +112,25 @@ bool Sudoku::setSpace(int val, int i, int j) {
 }
 
 /**
+ * Sets the given space then declares it as locked
+ *
+ * @param val number to set
+ * @param i row
+ * @param j col
+ */
+void Sudoku::setLocked(int val, int i, int j) {
+    setSpace(val, i, j);
+    locked[i][j] = true;
+}
+
+/**
  * Gets all the numbers in the sub box minus current
  *
  * @param row Row of square in desired box
  * @param col Col of square in desired box
  * @return Vector of the integers in the box minus current
  */
-std::vector<int> &Sudoku::getSub(int row, int col) {
-    std::vector<int> neighbors;
+void Sudoku::getSub(std::vector<int> neighbors, int row, int col) {
     int subLength = (int) sqrt(BOARD_LENGTH);
 
     // Find location within sub
@@ -131,9 +154,5 @@ std::vector<int> &Sudoku::getSub(int row, int col) {
 
         }
     }
-
-    // Return results
-    return neighbors;
-
 
 }

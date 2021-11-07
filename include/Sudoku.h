@@ -72,13 +72,22 @@ class Sudoku {
         bool setSpace(int val, int i, int j);
 
         /**
+         * Sets the given space then declares it as locked
+         *
+         * @param val number to set
+         * @param i row
+         * @param j col
+         */
+        void setLocked(int val, int i, int j);
+
+        /**
          * Gets all the numbers in the sub box
          *
          * @param row Row of square in desired box
          * @param col Col of square in desired box
          * @return Vector of the integers in the box minus current
          */
-        std::vector<int> &getSub(int row, int col);
+        void getSub(std::vector<int> neighbors, int row, int col);
 
 };
 
