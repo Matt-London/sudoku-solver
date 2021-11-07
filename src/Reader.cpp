@@ -26,6 +26,10 @@
     std::ifstream puzzleFile(path);
     std::string line;
     while (std::getline(puzzleFile, line)) {
+        if (row >= BOARD_LENGTH) {
+            break;
+        }
+
         col = 0;
         // Loop through line
         for (int i = 0; i < (BOARD_LENGTH * 2) - 1; i += 2) {
