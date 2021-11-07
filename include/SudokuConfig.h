@@ -63,6 +63,13 @@ class SudokuConfig {
          */
         std::string printable();
 
+        /**
+         * Returns copy of sudoku
+         *
+         * @return sudoku
+         */
+        Sudoku getSudoku();
+
 
 };
 

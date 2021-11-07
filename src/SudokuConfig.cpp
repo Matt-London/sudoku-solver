@@ -171,3 +171,12 @@ std::string SudokuConfig::printable() {
     return str;
 
 }
+
+/**
+ * Returns copy of sudoku
+ *
+ * @return sudoku
+ */
+Sudoku SudokuConfig::getSudoku() {
+    return sudoku;
+}
