@@ -83,6 +83,8 @@ std::vector<SudokuConfig> SudokuConfig::getSuccessors() {
         }
     }
 
+    return successors;
+
 
 }
 
