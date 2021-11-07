@@ -97,5 +97,43 @@ bool Sudoku::setSpace(int val, int i, int j) {
 
     grid[i][j] = val;
     return true;
+}
+
+/**
+ * Gets all the numbers in the sub box minus current
+ *
+ * @param row Row of square in desired box
+ * @param col Col of square in desired box
+ * @return Vector of the integers in the box minus current
+ */
+std::vector<int> Sudoku::getSub(int row, int col) {
+    std::vector<int> neighbors;
+    int subLength = (int) sqrt(BOARD_LENGTH);
+
+    // Find location within sub
+    int subRow = row % subLength;
+    int subCol = col % subLength;
+
+    // Find top left of sub in terms of whole grid
+    int topLeftRow = row - subRow;
+    int topLeftCol = col - subCol;
+
+    // Loop through and add the numbers, but avoid the actual space
+    for (int i = topLeftRow; i < topLeftRow + subLength; i++) {
+        for (int j = topLeftCol; j < topLeftCol + subLength; j++) {
+            // Make sure it isn't the current
+            if (i == row && j == col) {
+                continue;
+            }
+
+            // Add value to vector
+            neighbors.push_back(grid[i][j]);
+
+        }
+    }
+
+    // Return results
+    return neighbors;
+
 
 }
