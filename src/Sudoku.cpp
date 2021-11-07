@@ -106,7 +106,7 @@ bool Sudoku::setSpace(int val, int i, int j) {
  * @param col Col of square in desired box
  * @return Vector of the integers in the box minus current
  */
-std::vector<int> Sudoku::getSub(int row, int col) {
+std::vector<int> &Sudoku::getSub(int row, int col) {
     std::vector<int> neighbors;
     int subLength = (int) sqrt(BOARD_LENGTH);
 
