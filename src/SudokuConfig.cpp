@@ -58,8 +58,8 @@ std::vector<SudokuConfig> SudokuConfig::getSuccessors() {
     bool complete = false;
 
     for (int i = newRow; i < BOARD_LENGTH; i++) {
-        for (int j = newCol; j < BOARD_LENGTH; j++) {
-            if (!sudoku.isLocked(i, j)) {
+        for (int j = 0; j < BOARD_LENGTH; j++) {
+            if (sudoku.getSpace(i, j) == BLANK) {
                 destRow = i;
                 destCol = j;
                 complete = true;
