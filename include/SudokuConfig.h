@@ -6,6 +6,7 @@
 #define SUDOKU_SOLVER_SUDOKUCONFIG_H
 
 #include <vector>
+#include <string>
 
 #include "Sudoku.h"
 
@@ -54,6 +55,13 @@ class SudokuConfig {
          * @return whether it is the goal
          */
         bool isGoal();
+
+        /**
+         * Builds a printable sudoku
+         *
+         * @return A string version of puzzle
+         */
+        std::string printable();
 
 
 };

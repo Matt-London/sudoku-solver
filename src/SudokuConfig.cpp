@@ -92,6 +92,31 @@ std::vector<SudokuConfig> SudokuConfig::getSuccessors() {
  * @return whether it is valid or not
  */
 bool SudokuConfig::isValid() {
+    int currentVal = sudoku.getSpace(row, col);
+
+    // Check left right up down
+    for (int i = 0; i < BOARD_LENGTH; i++) {
+        // Check left and right of square
+        if (sudoku.getSpace(row, i) == currentVal) {
+            return false;
+        }
+
+        // Check up and down of square
+        if (sudoku.getSpace(i, col) == currentVal) {
+            return false;
+        }
+    }
+
+    // Now check the containing box
+    std::vector<int> subVals = sudoku.getSub(row, col);
+    if (std::find(subVals.begin(), subVals.end(), currentVal) != subVals.end()) {
+        // Then it contains
+        return false;
+    }
+
+    // If none are false then it is a legal combination
+    return true;
+
 
 }
 
@@ -101,5 +126,37 @@ bool SudokuConfig::isValid() {
  * @return whether it is the goal
  */
 bool SudokuConfig::isGoal() {
+    // Check that every square is filled in, otherwise isValid procedurally checks all combinations
+    for (int i = 0; i < BOARD_LENGTH; i++) {
+        for (int j = 0; j < BOARD_LENGTH; j++) {
+            if (sudoku.getSpace(i, j) == BLANK) {
+                return false;
+            }
+
+        }
+    }
+
+    return true;
+
+}
+
+/**
+ * Builds a printable sudoku
+ *
+ * @return A string version of puzzle
+ */
+std::string SudokuConfig::printable() {
+    std::string str = "";
+
+    // Loop through and append
+    for (int i = 0; i < BOARD_LENGTH; i++) {
+        for (int j = 0; j < BOARD_LENGTH; j++) {
+            str.append(std::to_string(sudoku.getSpace(i, j)));
+            str.append(" ");
+
+        }
+    }
+
+    return str;
 
 }
