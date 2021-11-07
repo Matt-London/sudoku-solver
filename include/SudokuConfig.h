@@ -11,17 +11,35 @@
 
 class SudokuConfig {
     private:
+        // Last spot to be changed
         int row;
         int col;
+
         Sudoku sudoku;
 
     public:
+        /**
+         * Constructor for config
+         *
+         * @param row row that was changed
+         * @param col col that was changed
+         * @param sudoku sudoku grid that is referenced
+         */
+        SudokuConfig(int row, int col, Sudoku sudoku);
+
+        /**
+         * Copy constructor
+         *
+         * @param other old sudokuconfig to copy from
+         */
+        SudokuConfig(SudokuConfig const &other);
+
         /**
          * Get a list of the possible successors available by changing the next box
          *
          * @return List of valid successors (calls isValid)
          */
-        std::vector<Sudoku> getSuccessors();
+        std::vector<SudokuConfig> getSuccessors();
 
         /**
          * Determines if this config with its changes is valid
