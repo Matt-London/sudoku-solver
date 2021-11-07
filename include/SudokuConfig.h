@@ -19,9 +19,25 @@ class SudokuConfig {
         /**
          * Get a list of the possible successors available by changing the next box
          *
-         * @return
+         * @return List of valid successors (calls isValid)
          */
         std::vector<Sudoku> getSuccessors();
+
+        /**
+         * Determines if this config with its changes is valid
+         *
+         * @return whether it is valid or not
+         */
+        bool isValid();
+
+        /**
+         * Determines if the puzzle is complete and it is the goal
+         *
+         * @return whether it is the goal
+         */
+        bool isGoal();
+
+
 };
 
 
