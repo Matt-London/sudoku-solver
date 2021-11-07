@@ -9,4 +9,4 @@ include_directories(src)
 include_directories(test)
 
 add_executable(sudoku_solver
-        test/main.cpp src/Sudoku.cpp include/Sudoku.h include/constants.h src/SudokuConfig.cpp include/SudokuConfig.h src/Backtracker.cpp include/Backtracker.h src/Handler.cpp include/Handler.h src/Reader.cpp include/Reader.h)
+        test/main.cpp src/Sudoku.cpp include/Sudoku.h include/constants.h src/SudokuConfig.cpp include/SudokuConfig.h src/Backtracker.cpp include/Backtracker.h src/SudokuHandler.cpp include/SudokuHandler.h src/Reader.cpp include/Reader.h)
