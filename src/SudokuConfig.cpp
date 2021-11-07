@@ -55,13 +55,19 @@ std::vector<SudokuConfig> SudokuConfig::getSuccessors() {
     // Look for one that is not locked
     int destRow = -1;
     int destCol = -1;
+    bool complete = false;
 
     for (int i = newRow; i < BOARD_LENGTH; i++) {
         for (int j = newCol; j < BOARD_LENGTH; j++) {
             if (!sudoku.isLocked(i, j)) {
                 destRow = i;
                 destCol = j;
+                complete = true;
+                break;
             }
+        }
+        if (complete) {
+            break;
         }
     }
     // Make sure it actually changed
@@ -76,6 +82,8 @@ std::vector<SudokuConfig> SudokuConfig::getSuccessors() {
 
         // Change to new number
         successor.sudoku.setSpace(i + 1, destRow, destCol);
+        successor.row = destRow;
+        successor.col = destCol;
 
         // If it's valid then return it
         if (successor.isValid()) {
@@ -99,18 +107,19 @@ bool SudokuConfig::isValid() {
     // Check left right up down
     for (int i = 0; i < BOARD_LENGTH; i++) {
         // Check left and right of square
-        if (sudoku.getSpace(row, i) == currentVal) {
+        if (i != col && sudoku.getSpace(row, i) == currentVal) {
             return false;
         }
 
         // Check up and down of square
-        if (sudoku.getSpace(i, col) == currentVal) {
+        if (i != row && sudoku.getSpace(i, col) == currentVal) {
             return false;
         }
     }
 
     // Now check the containing box
-    std::vector<int> subVals = sudoku.getSub(row, col);
+    std::vector<int> subVals;
+    sudoku.getSub(subVals, row, col);
     if (std::find(subVals.begin(), subVals.end(), currentVal) != subVals.end()) {
         // Then it contains
         return false;
@@ -155,8 +164,8 @@ std::string SudokuConfig::printable() {
         for (int j = 0; j < BOARD_LENGTH; j++) {
             str.append(std::to_string(sudoku.getSpace(i, j)));
             str.append(" ");
-
         }
+        str.append("\n");
     }
 
     return str;

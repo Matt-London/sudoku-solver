@@ -41,7 +41,8 @@ std::optional<SudokuConfig> Backtracker::solve(SudokuConfig config) {
     }
     else {
         // Check each successor which are already known to be valid
-        for (SudokuConfig successor: config.getSuccessors()) {
+        std::vector<SudokuConfig> successors = config.getSuccessors();
+        for (SudokuConfig successor: successors) {
             debugPrint("\tValid successor", successor);
             std::optional possibleSol = solve(successor);
             if (possibleSol.has_value()) {
